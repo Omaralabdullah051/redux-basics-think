@@ -1,19 +1,21 @@
 import { connect } from "react-redux";
 import { decrement, increment } from "../redux/counter/actions";
 
-const Counter = ({ count, incrementHandler, decrementHandler }) => {
+const Counter = ({ count, incrementHandler, decrementHandler, name }) => {
   return (
-    <div class="p-4 h-auto flex flex-col items-center justify-center space-y-5 bg-white rounded shadow">
-      <div class="text-2xl font-semibold">{count}</div>
-      <div class="flex space-x-3">
+    <div className="p-4 h-auto flex flex-col items-center justify-center space-y-5 bg-white rounded shadow">
+      <div className="text-2xl font-semibold">
+        {count} - {name}
+      </div>
+      <div className="flex space-x-3">
         <button
-          class="bg-indigo-400 text-white px-3 py-2 rounded shadow"
+          className="bg-indigo-400 text-white px-3 py-2 rounded shadow"
           onClick={() => incrementHandler(5)}
         >
           Increment
         </button>
         <button
-          class="bg-red-400 text-white px-3 py-2 rounded shadow"
+          className="bg-red-400 text-white px-3 py-2 rounded shadow"
           onClick={() => decrementHandler(2)}
         >
           Decrement
@@ -23,7 +25,8 @@ const Counter = ({ count, incrementHandler, decrementHandler }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps);
   return {
     count: state.value,
   };
