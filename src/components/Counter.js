@@ -24,7 +24,7 @@ const Counter = ({ count, incrementHandler, decrementHandler }) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps);
+  //   console.log(ownProps);
   return {
     count: state.counter.value,
   };
