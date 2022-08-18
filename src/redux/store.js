@@ -1,18 +1,8 @@
 import { applyMiddleware, createStore } from "redux";
+import myLogger from "./middlewares/myLogger";
 import rootReducer from "./rootReducer";
+import logger from "redux-logger";
 
-//* OUR CUSTOM MIDDLEWAREE TO ADD CUSTOM LOGGER (curried function)
-const myLogger = (store) => (next) => (action) => {
-  console.log(`Action: ${JSON.stringify(action)}`);
-  console.log(`Previous State: ${JSON.stringify(store.getState())}`);
-
-  const updatedState = [action].reduce(rootReducer, store.getState());
-  console.log(`Updated State: ${JSON.stringify(updatedState)}`);
-
-  //* pass action
-  return next(action);
-};
-
-const store = createStore(rootReducer, applyMiddleware(myLogger));
+const store = createStore(rootReducer, applyMiddleware(myLogger, logger));
 
 export default store;
